@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGO_URI)
     .catch(err => console.log('MongoDB connection error: ',err));
 
 // Routes
-app.use('/userlist', require('/routes/user-route'));
+app.use('/userlist', require('./routes/user-route'));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

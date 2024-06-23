@@ -1,57 +1,43 @@
 /**
  *Created with IntelliJ IDEA
  *@project       : cartoonopia-web-react
- *@Description   : cartoonopia login page
+ *@Description   : register page
  *@Version       : 1.0.0.0
- *@Create        :2024-06-22
+ *@Create        :2024-06-23
  *@Author        :Jianbin
  */
 
 import React, { useState } from 'react';
-import { Link, useNavigate} from 'react-router-dom';
-import '../styles/Login.css';
+import {Link, useNavigate} from 'react-router-dom';
+import '../styles/Register.css';
 
-function Login() {
+function Register() {
+    const [firstname, setFirstName] = useState('');
+    const [lastname, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const [error, setError] = useState('');
-    localStorage.clear();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/userlist/login', {
+            const response = await fetch('http://localhost:3000/userlist/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ firstname, lastname, email, password }),
             });
-            const data = await response.json();
 
-            if(data.message){alert(data.message)}
-            if (data) {
-                localStorage.setItem('currentLoginUser', JSON.stringify(data.user))
-                localStorage.setItem('role', "member");
-
-                const adminIdList = data.adminRole;
-                const currentLoginUserId = data.user._id
-                adminIdList.forEach(adminId => {
-
-                    if(adminId._id === currentLoginUserId){
-                        localStorage.setItem('role', "admin");
-                    }
-                });
-
-                setTimeout(() => {
-                    navigate('/main');
-                }, 666);
+            if (!response.ok) {
+                const { message } = await response.json();
+                throw new Error(message);
             }
             else {
-                console.log('Login failed:', data.message);
+                alert("Registration successful. Please go back login page.");
+                document.getElementsByTagName('input').value= '';
             }
-        }
-        catch (error) {
+        } catch (error) {
             setError(error.message);
         }
     };
@@ -64,7 +50,7 @@ function Login() {
 
     return (
         <div className="body-background">
-            <div className="login-form">
+            <div className="register-form">
                 <div className="form-title-wrapper">
                     <p className="form-title-bg">Cartoonopia</p>
                     <p className="form-title-fg" onClick={handleBacktoMain}>Cartoonopia</p>
@@ -72,7 +58,29 @@ function Login() {
                 <p className="form-subtitle">The home of characters and cartoons</p>
                 {error && <p className="error-message">{error}</p>}
                 <form onSubmit={handleSubmit}>
-                    <div className='input-block'>
+                    <div className="input-block">
+                        <input
+                            type="text"
+                            id="firstname"
+                            className="input-field"
+                            placeholder="First Name"
+                            value={firstname}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-block">
+                        <input
+                            type="text"
+                            id="lastname"
+                            className="input-field"
+                            placeholder="Last Name"
+                            value={lastname}
+                            onChange={(e) => setLastName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-block">
                         <input
                             type="email"
                             id="email"
@@ -83,7 +91,7 @@ function Login() {
                             required
                         />
                     </div>
-                    <div className='input-block'>
+                    <div className="input-block">
                         <input
                             type="password"
                             id="password"
@@ -95,14 +103,14 @@ function Login() {
                             minLength={6}
                         />
                     </div>
-                    <div className='input-block'>
-                        <button type="submit" className="submit">Sign In</button>
+                    <div className="input-block">
+                        <button type="submit" className="submit">Sign Up</button>
                     </div>
                 </form>
-                <p className='check-account'>Don't have an account? <Link to="/register">Sign up</Link></p>
+                <p className="check-account">Already have an account? <Link to="/login">Sign in</Link></p>
             </div>
         </div>
     );
 }
 
-export default Login;
+export default Register;
