@@ -9,6 +9,7 @@
 
 import React, {useState , useEffect , useRef} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Cartoonopia from '../components/Cartoonopia';
 import '../styles/Header.css';
 import groupIcon from '../icons/groupicon.png';
 import menuIcon from '../icons/menuicon.png';
@@ -92,7 +93,9 @@ const HeadBar = ({ userRole }) => {
         <div className='navigation-bar'>
             {user ? (
                 <>
-                    <p className='logo' onClick={handleBacktoMain}> Cartoonopia</p>
+                    <div className='logo'>
+                        <Cartoonopia></Cartoonopia>
+                    </div>
                     <Link to='../pages/userProfileList'><img className='group' src={groupIcon} alt='group'/></Link>
                     <Link to='../pages/userProfile'><img className='profile' src={profileIcon} alt='profile'/></Link>
                     <div className='menu-icon' onClick={toggleMenu}>

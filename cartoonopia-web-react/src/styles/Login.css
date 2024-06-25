@@ -33,53 +33,6 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-.form-title-wrapper {
-    width: auto;
-    height: 100px;
-    display: grid;
-    place-content: center;
-    text-transform: uppercase;
-    grid-template-areas: 'overlap';
-}
-
-.form-title-wrapper > p {
-    color: rgba(245,235,220);
-    font-weight: 700;
-    grid-area: overlap;
-    letter-spacing: 1px;
-    -webkit-background-clip: text;
-    -webkit-text-stroke: 4px transparent;
-}
-
-.form-title-wrapper > p:hover {
-    cursor: pointer;
-    color: #3b3b3b;
-}
-
-.form-title-bg {
-    margin: 0;
-    font-size: 35px;
-    text-align: center;
-    transform-origin: top;
-    transform: scaleY(1.05);
-    filter: drop-shadow(5px 8px 4px #3b3b3b);
-    background-image: repeating-linear-gradient( 105deg,
-        var(--gold) 0%,
-        var(--dark-shadow) 5%,
-        var(--gold) 12%);
-}
-
-.form-title-fg {
-    margin: 0;
-    font-size: 35px;
-    text-align: center;
-    transform: scaleY(1.03);
-    background-image: repeating-linear-gradient( 105deg,
-        var(--gold) 0%,
-        var(--light-shadow) 23%,
-        var(--gold) 31%);
-}
-
 .form-subtitle {
     text-align: center;
     font-size: 15px;

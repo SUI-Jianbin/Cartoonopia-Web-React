@@ -1,7 +1,7 @@
 /**
  *Created with IntelliJ IDEA
  *@project       : cartoonopia-web-react
- *@Description   : cartoonopia main page
+ *@Description   : cartoonopia main page, main page for all web visitors, only registered user can interactive with this page.
  *@Version       : 1.0.0.0
  *@Create        :2024-06-23
  *@Author        :Jianbin
@@ -15,7 +15,6 @@ import clickImg from '../icons/click.png';
 import HeadBar from '../components/Header';
 import Footer from '../components/Footer';
 
-// main page for all web visitors, only registered user can interactive with this page.
 function Main() {
     const [userRole, setUserRole] = useState(localStorage.getItem('role'));
     const [loading, setLoading] = useState(true);

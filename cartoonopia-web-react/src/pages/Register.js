@@ -10,6 +10,7 @@
 import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import '../styles/Register.css';
+import Cartoonopia from "../components/Cartoonopia";
 
 function Register() {
     const [firstname, setFirstName] = useState('');
@@ -51,10 +52,7 @@ function Register() {
     return (
         <div className="body-background">
             <div className="register-form">
-                <div className="form-title-wrapper">
-                    <p className="form-title-bg">Cartoonopia</p>
-                    <p className="form-title-fg" onClick={handleBacktoMain}>Cartoonopia</p>
-                </div>
+                <Cartoonopia />
                 <p className="form-subtitle">The home of characters and cartoons</p>
                 {error && <p className="error-message">{error}</p>}
                 <form onSubmit={handleSubmit}>
